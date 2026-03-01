@@ -7,7 +7,7 @@ import { scrollToElement } from '@/lib/utils'
 
 export function Footer() {
   const currentYear = new Date().getFullYear()
-  
+
   const handleScrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' })
   }
@@ -33,13 +33,15 @@ export function Footer() {
                 transition={{ duration: 0.8 }}
                 viewport={{ once: true }}
               >
-                <h3 className="heading-3 text-text mb-4">Let's Work Together</h3>
+                <h3 className="heading-3 text-text mb-4">
+                  Let&apos;s Work Together
+                </h3>
                 <p className="body-large mb-6 max-w-lg">
-                  I'm always interested in new opportunities and exciting projects. 
-                  Whether you have a project in mind or just want to chat about technology, 
-                  feel free to reach out.
+                  I&apos;m always interested in new opportunities and exciting
+                  projects. Whether you have a project in mind or just want to
+                  chat about technology, feel free to reach out.
                 </p>
-                
+
                 <motion.a
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
@@ -61,10 +63,12 @@ export function Footer() {
               >
                 <h4 className="heading-4 text-text mb-6">Quick Links</h4>
                 <nav className="space-y-3">
-                  {siteConfig.navigation.map((item) => (
+                  {siteConfig.navigation.map(item => (
                     <button
                       key={item.name}
-                      onClick={() => scrollToElement(item.href.replace('#', ''))}
+                      onClick={() =>
+                        scrollToElement(item.href.replace('#', ''))
+                      }
                       className="block text-text-secondary hover:text-accent transition-colors"
                     >
                       {item.name}
@@ -85,7 +89,8 @@ export function Footer() {
                 <h4 className="heading-4 text-text mb-6">Connect</h4>
                 <div className="space-y-4">
                   {Object.entries(siteConfig.social).map(([platform, url]) => {
-                    const Icon = socialIcons[platform as keyof typeof socialIcons]
+                    const Icon =
+                      socialIcons[platform as keyof typeof socialIcons]
                     if (!Icon) return null
 
                     return (
@@ -131,7 +136,9 @@ export function Footer() {
               viewport={{ once: true }}
               className="flex items-center space-x-1 text-text-secondary"
             >
-              <span>© {currentYear} {siteConfig.author.name}. Made with</span>
+              <span>
+                © {currentYear} {siteConfig.author.name}. Made with
+              </span>
               <Heart className="h-4 w-4 text-red-500 fill-current" />
               <span>and lots of</span>
               <span className="text-accent">code</span>

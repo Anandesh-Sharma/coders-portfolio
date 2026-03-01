@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import ReactMarkdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
 import { Copy, Check } from 'lucide-react'
@@ -50,9 +50,9 @@ export function SimpleMDXRenderer({ content }: SimpleMDXRendererProps) {
 
     // Links
     a: ({ href, children }: any) => (
-      <a 
-        href={href} 
-        className="text-cyan-400 hover:text-cyan-300 underline" 
+      <a
+        href={href}
+        className="text-cyan-400 hover:text-cyan-300 underline"
         target={href?.startsWith('http') ? '_blank' : undefined}
         rel={href?.startsWith('http') ? 'noopener noreferrer' : undefined}
       >
@@ -89,7 +89,9 @@ export function SimpleMDXRenderer({ content }: SimpleMDXRendererProps) {
       // If it's a code block, apply language-specific styling
       if (className?.startsWith('language-')) {
         return (
-          <code className={`${className} text-sm font-mono leading-relaxed block`}>
+          <code
+            className={`${className} text-sm font-mono leading-relaxed block`}
+          >
             {children}
           </code>
         )
@@ -160,9 +162,9 @@ export function SimpleMDXRenderer({ content }: SimpleMDXRendererProps) {
 
     // Images
     img: ({ src, alt }: any) => (
-      <img 
-        src={src} 
-        alt={alt} 
+      <img
+        src={src}
+        alt={alt}
         className="max-w-full h-auto rounded-lg my-4 border border-gray-600"
       />
     ),
@@ -180,15 +182,12 @@ export function SimpleMDXRenderer({ content }: SimpleMDXRendererProps) {
     // Strikethrough (from remark-gfm)
     del: ({ children }: any) => (
       <del className="text-gray-500 line-through">{children}</del>
-    )
+    ),
   }
 
   return (
     <div className="mdx-content">
-      <ReactMarkdown
-        remarkPlugins={[remarkGfm]}
-        components={components}
-      >
+      <ReactMarkdown remarkPlugins={[remarkGfm]} components={components}>
         {content}
       </ReactMarkdown>
     </div>

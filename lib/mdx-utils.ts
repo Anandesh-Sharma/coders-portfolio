@@ -8,10 +8,13 @@ export interface MdxProcessingOptions {
   remarkPlugins?: any[]
 }
 
-export async function processMdx(content: string, options: MdxProcessingOptions = {}) {
+export async function processMdx(
+  content: string,
+  options: MdxProcessingOptions = {}
+) {
   const {
     rehypePlugins = [rehypeHighlight, rehypeSlug],
-    remarkPlugins = [remarkGfm]
+    remarkPlugins = [remarkGfm],
   } = options
 
   try {
@@ -22,7 +25,7 @@ export async function processMdx(content: string, options: MdxProcessingOptions 
       rehypePlugins,
       jsx: true,
       jsxImportSource: 'react',
-      jsxRuntime: 'automatic'
+      jsxRuntime: 'automatic',
     })
 
     return compiled.toString()
@@ -52,7 +55,9 @@ export function estimateReadingTime(content: string): number {
     .replace(/[#*_~`]/g, '') // Remove markdown formatting
     .trim()
 
-  const wordCount = plainText.split(/\s+/).filter(word => word.length > 0).length
+  const wordCount = plainText
+    .split(/\s+/)
+    .filter(word => word.length > 0).length
   const wordsPerMinute = 200 // Average reading speed
   return Math.ceil(wordCount / wordsPerMinute)
 }
@@ -62,17 +67,20 @@ export function extractMetaFromMdx(content: string) {
   if (!frontmatterMatch) return { content, meta: {} }
 
   const frontmatter = frontmatterMatch[1]
-  const contentWithoutFrontmatter = content.replace(/^---\n([\s\S]*?)\n---\n?/, '')
-  
+  const contentWithoutFrontmatter = content.replace(
+    /^---\n([\s\S]*?)\n---\n?/,
+    ''
+  )
+
   // Simple frontmatter parser
   const meta: Record<string, any> = {}
   const lines = frontmatter.split('\n')
-  
+
   for (const line of lines) {
     const [key, ...valueParts] = line.split(':')
     if (key && valueParts.length > 0) {
       const value = valueParts.join(':').trim()
-      
+
       // Handle arrays (tags, etc.)
       if (value.startsWith('[') && value.endsWith(']')) {
         meta[key.trim()] = value

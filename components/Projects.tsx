@@ -24,8 +24,12 @@ export function Projects() {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null)
   const [filter, setFilter] = useState<'all' | 'featured' | string>('all')
 
-  const categories = ['all', 'featured', ...Array.from(new Set(siteConfig.projects.map(p => p.category)))]
-  
+  const categories = [
+    'all',
+    'featured',
+    ...Array.from(new Set(siteConfig.projects.map(p => p.category))),
+  ]
+
   const filteredProjects = siteConfig.projects.filter(project => {
     if (filter === 'all') return true
     if (filter === 'featured') return project.featured
@@ -67,7 +71,8 @@ export function Projects() {
               viewport={{ once: true }}
               className="body-large max-w-2xl mx-auto"
             >
-              A showcase of my recent work, featuring modern web applications built with cutting-edge technologies.
+              A showcase of my recent work, featuring modern web applications
+              built with cutting-edge technologies.
             </motion.p>
           </div>
 
@@ -79,7 +84,7 @@ export function Projects() {
             viewport={{ once: true }}
             className="flex flex-wrap justify-center gap-2 mb-12"
           >
-            {categories.map((category) => (
+            {categories.map(category => (
               <button
                 key={category}
                 onClick={() => setFilter(category)}
@@ -136,7 +141,7 @@ export function Projects() {
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.9, y: 20 }}
               className="relative w-full max-w-4xl max-h-[90vh] bg-bg border border-border rounded-2xl overflow-hidden"
-              onClick={(e) => e.stopPropagation()}
+              onClick={e => e.stopPropagation()}
             >
               {/* Close Button */}
               <button
@@ -158,7 +163,7 @@ export function Projects() {
                     sizes="(max-width: 768px) 100vw, 80vw"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-bg/60 to-transparent" />
-                  
+
                   {/* Project badges */}
                   <div className="absolute top-4 left-4 flex space-x-2">
                     <span className="px-3 py-1 bg-bg/80 backdrop-blur-sm text-text text-sm font-medium rounded-full border border-border">
@@ -174,15 +179,21 @@ export function Projects() {
 
                 {/* Project Content */}
                 <div className="p-8">
-                  <h3 className="heading-2 text-text mb-4">{selectedProject.title}</h3>
-                  
-                  <p className="body-large mb-6">{selectedProject.longDescription}</p>
+                  <h3 className="heading-2 text-text mb-4">
+                    {selectedProject.title}
+                  </h3>
+
+                  <p className="body-large mb-6">
+                    {selectedProject.longDescription}
+                  </p>
 
                   {/* Technologies */}
                   <div className="mb-8">
-                    <h4 className="heading-4 text-text mb-4">Technologies Used</h4>
+                    <h4 className="heading-4 text-text mb-4">
+                      Technologies Used
+                    </h4>
                     <div className="flex flex-wrap gap-2">
-                      {selectedProject.technologies.map((tech) => (
+                      {selectedProject.technologies.map(tech => (
                         <span
                           key={tech}
                           className="px-3 py-1 bg-bg-secondary border border-border rounded-full text-sm text-text-secondary"
@@ -206,7 +217,7 @@ export function Projects() {
                       <ExternalLink className="h-5 w-5" />
                       <span>View Live Demo</span>
                     </motion.a>
-                    
+
                     <motion.a
                       whileHover={{ scale: 1.05 }}
                       whileTap={{ scale: 0.95 }}

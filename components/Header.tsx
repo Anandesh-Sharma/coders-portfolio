@@ -85,7 +85,7 @@ export function Header() {
               className="md:hidden border-t border-border bg-bg/95 backdrop-blur-md"
             >
               <div className="py-4 space-y-2">
-                {siteConfig.navigation.map((item) => (
+                {siteConfig.navigation.map(item => (
                   <button
                     key={item.name}
                     onClick={() => handleNavClick(item.href)}

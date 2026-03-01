@@ -12,19 +12,24 @@ interface BlogListClientProps {
   tags: BlogTag[]
 }
 
-export function BlogListClient({ posts, featuredPosts, tags }: BlogListClientProps) {
+export function BlogListClient({
+  posts,
+  featuredPosts,
+  tags,
+}: BlogListClientProps) {
   const [searchTerm, setSearchTerm] = useState('')
   const [selectedTag, setSelectedTag] = useState<string | null>(null)
   const [showFilters, setShowFilters] = useState(false)
 
   const filteredPosts = posts.filter(post => {
-    const matchesSearch = searchTerm === '' || 
+    const matchesSearch =
+      searchTerm === '' ||
       post.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
       post.description?.toLowerCase().includes(searchTerm.toLowerCase())
-    
-    const matchesTag = selectedTag === null || 
-      post.tags?.some(tag => tag.slug === selectedTag)
-    
+
+    const matchesTag =
+      selectedTag === null || post.tags?.some(tag => tag.slug === selectedTag)
+
     return matchesSearch && matchesTag
   })
 
@@ -32,7 +37,7 @@ export function BlogListClient({ posts, featuredPosts, tags }: BlogListClientPro
     return new Date(dateString).toLocaleDateString('en-US', {
       year: 'numeric',
       month: 'long',
-      day: 'numeric'
+      day: 'numeric',
     })
   }
 
@@ -50,11 +55,10 @@ export function BlogListClient({ posts, featuredPosts, tags }: BlogListClientPro
         transition={{ duration: 0.8 }}
         className="text-center mb-16"
       >
-        <h1 className="text-4xl md:text-6xl font-bold text-text mb-6">
-          Blog
-        </h1>
+        <h1 className="text-4xl md:text-6xl font-bold text-text mb-6">Blog</h1>
         <p className="text-xl text-text-secondary max-w-2xl mx-auto">
-          Thoughts, tutorials, and insights about web development, technology, and best practices.
+          Thoughts, tutorials, and insights about web development, technology,
+          and best practices.
         </p>
       </motion.div>
 
@@ -92,17 +96,17 @@ export function BlogListClient({ posts, featuredPosts, tags }: BlogListClientPro
                         </div>
                       )}
                     </div>
-                    
+
                     <h3 className="text-xl font-bold text-text mb-3 group-hover:text-accent transition-colors line-clamp-2">
                       {post.title}
                     </h3>
-                    
+
                     {post.description && (
                       <p className="text-text-secondary mb-4 line-clamp-3">
                         {post.description}
                       </p>
                     )}
-                    
+
                     <div className="flex items-center justify-between">
                       <span className="px-3 py-1 bg-accent/10 text-accent text-xs font-semibold rounded-full border border-accent/20">
                         Featured
@@ -133,11 +137,11 @@ export function BlogListClient({ posts, featuredPosts, tags }: BlogListClientPro
               type="text"
               placeholder="Search posts..."
               value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
+              onChange={e => setSearchTerm(e.target.value)}
               className="w-full pl-10 pr-4 py-2 bg-bg-secondary border border-border rounded-lg text-text placeholder-text-secondary focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent"
             />
           </div>
-          
+
           <button
             onClick={() => setShowFilters(!showFilters)}
             className="flex items-center space-x-2 px-4 py-2 bg-bg-secondary border border-border rounded-lg text-text hover:border-accent transition-colors"
@@ -166,12 +170,14 @@ export function BlogListClient({ posts, featuredPosts, tags }: BlogListClientPro
                 </button>
               )}
             </div>
-            
+
             <div className="flex flex-wrap gap-2">
-              {tags.map((tag) => (
+              {tags.map(tag => (
                 <button
                   key={tag.id}
-                  onClick={() => setSelectedTag(selectedTag === tag.slug ? null : tag.slug)}
+                  onClick={() =>
+                    setSelectedTag(selectedTag === tag.slug ? null : tag.slug)
+                  }
                   className={`px-3 py-1 rounded-full text-sm border transition-colors ${
                     selectedTag === tag.slug
                       ? 'bg-accent text-bg border-accent'
@@ -224,22 +230,22 @@ export function BlogListClient({ posts, featuredPosts, tags }: BlogListClientPro
                         </div>
                       )}
                     </div>
-                    
+
                     <h3 className="text-xl font-bold text-text mb-3 group-hover:text-accent transition-colors">
                       {post.title}
                     </h3>
-                    
+
                     {post.description && (
                       <p className="text-text-secondary mb-4 line-clamp-3">
                         {post.description}
                       </p>
                     )}
-                    
+
                     {post.tags && post.tags.length > 0 && (
                       <div className="flex items-center space-x-2 mb-4">
                         <Tag className="h-4 w-4 text-text-secondary" />
                         <div className="flex flex-wrap gap-2">
-                          {post.tags.slice(0, 3).map((tag) => (
+                          {post.tags.slice(0, 3).map(tag => (
                             <span
                               key={tag.id}
                               className="px-2 py-1 bg-bg-secondary border border-border rounded text-xs text-text-secondary"
@@ -255,7 +261,7 @@ export function BlogListClient({ posts, featuredPosts, tags }: BlogListClientPro
                         </div>
                       </div>
                     )}
-                    
+
                     <div className="flex items-center justify-between">
                       {post.featured && (
                         <span className="px-2 py-1 bg-accent/10 text-accent text-xs font-semibold rounded-full border border-accent/20">
@@ -274,7 +280,9 @@ export function BlogListClient({ posts, featuredPosts, tags }: BlogListClientPro
         ) : (
           <div className="text-center py-16">
             <p className="text-xl text-text-secondary mb-4">
-              {searchTerm || selectedTag ? 'No posts found matching your criteria.' : 'No posts available yet.'}
+              {searchTerm || selectedTag
+                ? 'No posts found matching your criteria.'
+                : 'No posts available yet.'}
             </p>
             {(searchTerm || selectedTag) && (
               <button
@@ -298,7 +306,8 @@ export function BlogListClient({ posts, featuredPosts, tags }: BlogListClientPro
         <div className="card p-8 text-center bg-gradient-to-r from-bg-secondary/50 to-bg/50">
           <h3 className="text-2xl font-bold text-text mb-4">Stay Updated</h3>
           <p className="text-text-secondary mb-8 max-w-2xl mx-auto">
-            Get notified when I publish new posts about web development, technology insights, and coding tutorials.
+            Get notified when I publish new posts about web development,
+            technology insights, and coding tutorials.
           </p>
           <form className="max-w-md mx-auto flex gap-4">
             <input
@@ -307,10 +316,7 @@ export function BlogListClient({ posts, featuredPosts, tags }: BlogListClientPro
               className="flex-1 px-4 py-2 bg-bg border border-border rounded-lg text-text placeholder-text-secondary focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent"
               required
             />
-            <button
-              type="submit"
-              className="btn-primary"
-            >
+            <button type="submit" className="btn-primary">
               Subscribe
             </button>
           </form>

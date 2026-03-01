@@ -4,7 +4,7 @@ import { siteConfig } from '@/lib/siteConfig'
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = siteConfig.url || 'http://localhost:3000'
-  
+
   // Static pages
   const staticPages = [
     {
@@ -23,8 +23,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
   // Get all published blog posts
   const posts = await blogDb.getPublishedPosts()
-  
-  const blogPages = posts.map((post) => ({
+
+  const blogPages = posts.map(post => ({
     url: `${baseUrl}/blog/${post.slug}`,
     lastModified: new Date(post.updated_at),
     changeFrequency: 'monthly' as const,
@@ -33,8 +33,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
   // Get all tags
   const tags = await blogDb.getAllTags()
-  
-  const tagPages = tags.map((tag) => ({
+
+  const tagPages = tags.map(tag => ({
     url: `${baseUrl}/blog?tag=${tag.slug}`,
     lastModified: new Date(),
     changeFrequency: 'weekly' as const,

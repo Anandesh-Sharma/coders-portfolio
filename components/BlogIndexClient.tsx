@@ -14,7 +14,7 @@ export function BlogIndexClient({ posts }: BlogIndexClientProps) {
     return new Date(dateString).toLocaleDateString('en-US', {
       year: 'numeric',
       month: 'long',
-      day: 'numeric'
+      day: 'numeric',
     })
   }
 
@@ -45,7 +45,8 @@ export function BlogIndexClient({ posts }: BlogIndexClientProps) {
               viewport={{ once: true }}
               className="body-large max-w-2xl mx-auto"
             >
-              Thoughts, tutorials, and insights about web development, technology, and best practices.
+              Thoughts, tutorials, and insights about web development,
+              technology, and best practices.
             </motion.p>
           </div>
 
@@ -96,7 +97,7 @@ export function BlogIndexClient({ posts }: BlogIndexClientProps) {
                         <div className="flex items-center space-x-2 mb-4">
                           <Tag className="h-4 w-4 text-text-secondary" />
                           <div className="flex flex-wrap gap-2">
-                            {post.tags.slice(0, 3).map((tag) => (
+                            {post.tags.slice(0, 3).map(tag => (
                               <span
                                 key={tag.id}
                                 className="px-2 py-1 bg-bg-secondary border border-border rounded text-xs text-text-secondary"
@@ -127,10 +128,10 @@ export function BlogIndexClient({ posts }: BlogIndexClientProps) {
                         <span className="text-sm font-medium">Read More</span>
                         <motion.div
                           animate={{ x: [0, 5, 0] }}
-                          transition={{ 
-                            duration: 1.5, 
-                            repeat: Infinity, 
-                            ease: "easeInOut" 
+                          transition={{
+                            duration: 1.5,
+                            repeat: Infinity,
+                            ease: 'easeInOut',
                           }}
                           className="ml-2"
                         >
@@ -153,8 +154,9 @@ export function BlogIndexClient({ posts }: BlogIndexClientProps) {
               <div className="card p-8">
                 <h3 className="heading-3 text-text mb-4">Coming Soon</h3>
                 <p className="body-large mb-8">
-                  I'm working on some exciting blog posts about web development, 
-                  best practices, and the latest technologies. Stay tuned!
+                  I&apos;m working on some exciting blog posts about web
+                  development, best practices, and the latest technologies. Stay
+                  tuned!
                 </p>
                 <motion.a
                   whileHover={{ scale: 1.05 }}
@@ -199,10 +201,10 @@ export function BlogIndexClient({ posts }: BlogIndexClientProps) {
             <div className="card p-8 text-center bg-gradient-to-r from-bg-secondary/50 to-bg/50">
               <h3 className="heading-3 text-text mb-4">Stay Updated</h3>
               <p className="body-large mb-8 max-w-2xl mx-auto">
-                Get notified when I publish new posts about web development, 
+                Get notified when I publish new posts about web development,
                 technology insights, and coding tutorials.
               </p>
-              
+
               <form className="max-w-md mx-auto flex gap-4">
                 <input
                   type="email"
@@ -219,7 +221,7 @@ export function BlogIndexClient({ posts }: BlogIndexClientProps) {
                   Subscribe
                 </motion.button>
               </form>
-              
+
               <p className="body-small mt-4">
                 No spam, unsubscribe at any time.
               </p>

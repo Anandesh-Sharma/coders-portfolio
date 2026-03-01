@@ -33,7 +33,8 @@ export function Experience() {
               viewport={{ once: true }}
               className="body-large max-w-2xl mx-auto"
             >
-              My professional journey and the experiences that have shaped my development skills.
+              My professional journey and the experiences that have shaped my
+              development skills.
             </motion.p>
           </div>
 
@@ -66,7 +67,7 @@ export function Experience() {
                             {exp.company}
                           </p>
                         </div>
-                        
+
                         <div className="flex flex-col sm:items-end space-y-1 mt-2 sm:mt-0">
                           <div className="flex items-center space-x-2 text-text-secondary">
                             <Calendar className="h-4 w-4" />
@@ -89,23 +90,27 @@ export function Experience() {
                           Key Achievements
                         </h4>
                         <ul className="space-y-2">
-                          {exp.achievements.map((achievement, achievementIndex) => (
-                            <li
-                              key={achievementIndex}
-                              className="body-base flex items-start"
-                            >
-                              <span className="text-accent mr-2 mt-1.5 block w-1.5 h-1.5 rounded-full bg-accent flex-shrink-0" />
-                              {achievement}
-                            </li>
-                          ))}
+                          {exp.achievements.map(
+                            (achievement, achievementIndex) => (
+                              <li
+                                key={achievementIndex}
+                                className="body-base flex items-start"
+                              >
+                                <span className="text-accent mr-2 mt-1.5 block w-1.5 h-1.5 rounded-full bg-accent flex-shrink-0" />
+                                {achievement}
+                              </li>
+                            )
+                          )}
                         </ul>
                       </div>
 
                       {/* Technologies */}
                       <div>
-                        <h4 className="font-semibold text-text mb-3">Technologies</h4>
+                        <h4 className="font-semibold text-text mb-3">
+                          Technologies
+                        </h4>
                         <div className="flex flex-wrap gap-2">
-                          {exp.technologies.map((tech) => (
+                          {exp.technologies.map(tech => (
                             <span
                               key={tech}
                               className="px-3 py-1 bg-bg-secondary border border-border rounded-full text-sm text-text-secondary"
@@ -130,9 +135,12 @@ export function Experience() {
             viewport={{ once: true }}
             className="text-center mt-16"
           >
-            <h3 className="heading-3 text-text mb-4">Interested in working together?</h3>
+            <h3 className="heading-3 text-text mb-4">
+              Interested in working together?
+            </h3>
             <p className="body-large mb-8">
-              I'm always open to discussing new opportunities and challenging projects.
+              I&apos;m always open to discussing new opportunities and
+              challenging projects.
             </p>
             <motion.a
               whileHover={{ scale: 1.05 }}

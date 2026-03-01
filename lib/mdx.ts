@@ -23,8 +23,8 @@ export function getAllPosts(): Post[] {
 
   const fileNames = fs.readdirSync(postsDirectory)
   const allPostsData = fileNames
-    .filter((fileName) => fileName.endsWith('.mdx'))
-    .map((fileName) => {
+    .filter(fileName => fileName.endsWith('.mdx'))
+    .map(fileName => {
       const slug = fileName.replace(/\.mdx$/, '')
       const fullPath = path.join(postsDirectory, fileName)
       const fileContents = fs.readFileSync(fullPath, 'utf8')
@@ -41,7 +41,7 @@ export function getAllPosts(): Post[] {
         content,
       } as Post
     })
-    .filter((post) => !post.draft)
+    .filter(post => !post.draft)
     .sort((a, b) => (new Date(a.date) > new Date(b.date) ? -1 : 1))
 
   return allPostsData
@@ -50,7 +50,7 @@ export function getAllPosts(): Post[] {
 export function getPostBySlug(slug: string): Post | null {
   try {
     const fullPath = path.join(postsDirectory, `${slug}.mdx`)
-    
+
     if (!fs.existsSync(fullPath)) {
       return null
     }
@@ -81,6 +81,6 @@ export function getAllPostSlugs(): string[] {
 
   const fileNames = fs.readdirSync(postsDirectory)
   return fileNames
-    .filter((fileName) => fileName.endsWith('.mdx'))
-    .map((fileName) => fileName.replace(/\.mdx$/, ''))
+    .filter(fileName => fileName.endsWith('.mdx'))
+    .map(fileName => fileName.replace(/\.mdx$/, ''))
 }

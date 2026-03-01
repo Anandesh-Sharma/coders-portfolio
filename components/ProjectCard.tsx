@@ -23,7 +23,11 @@ interface ProjectCardProps {
   onViewDetails: (project: Project) => void
 }
 
-export function ProjectCard({ project, index, onViewDetails }: ProjectCardProps) {
+export function ProjectCard({
+  project,
+  index,
+  onViewDetails,
+}: ProjectCardProps) {
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
@@ -42,7 +46,7 @@ export function ProjectCard({ project, index, onViewDetails }: ProjectCardProps)
             className="object-cover transition-transform duration-300 group-hover:scale-105"
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
           />
-          
+
           {/* Featured badge */}
           {project.featured && (
             <div className="absolute top-4 right-4">
@@ -61,7 +65,7 @@ export function ProjectCard({ project, index, onViewDetails }: ProjectCardProps)
 
           {/* Overlay */}
           <div className="absolute inset-0 bg-gradient-to-t from-bg/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-          
+
           {/* Quick actions */}
           <div className="absolute bottom-4 right-4 flex space-x-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
             <motion.a
@@ -75,7 +79,7 @@ export function ProjectCard({ project, index, onViewDetails }: ProjectCardProps)
             >
               <ExternalLink className="h-4 w-4" />
             </motion.a>
-            
+
             <motion.a
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}
@@ -95,14 +99,12 @@ export function ProjectCard({ project, index, onViewDetails }: ProjectCardProps)
           <h3 className="heading-4 text-text mb-2 group-hover:text-accent transition-colors">
             {project.title}
           </h3>
-          
-          <p className="body-base mb-4 line-clamp-3">
-            {project.description}
-          </p>
+
+          <p className="body-base mb-4 line-clamp-3">{project.description}</p>
 
           {/* Technologies */}
           <div className="flex flex-wrap gap-2 mb-6">
-            {project.technologies.slice(0, 4).map((tech) => (
+            {project.technologies.slice(0, 4).map(tech => (
               <span
                 key={tech}
                 className="px-2 py-1 bg-bg-secondary border border-border rounded text-xs text-text-secondary"
@@ -129,7 +131,7 @@ export function ProjectCard({ project, index, onViewDetails }: ProjectCardProps)
                 <ExternalLink className="h-4 w-4" />
                 <span>Live Demo</span>
               </a>
-              
+
               <a
                 href={project.githubUrl}
                 target="_blank"

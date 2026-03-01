@@ -24,7 +24,7 @@ export function Hero() {
     >
       {/* Background gradient */}
       <div className="absolute inset-0 bg-gradient-to-br from-bg via-bg to-bg-secondary" />
-      
+
       {/* Animated background elements */}
       <div className="absolute inset-0 overflow-hidden">
         <div className="absolute -top-40 -right-40 w-80 h-80 bg-accent/5 rounded-full blur-3xl" />
@@ -46,7 +46,7 @@ export function Hero() {
               transition={{ duration: 0.8, delay: 0.2 }}
               className="text-lg text-accent font-medium"
             >
-              Hello, I'm
+              Hello, I&apos;m
             </motion.p>
 
             <h1 className="heading-1 text-text">
@@ -76,7 +76,8 @@ export function Hero() {
               className="max-w-2xl mx-auto body-large"
             >
               Specializing in modern web technologies, TypeScript, and creating
-              exceptional user experiences. Let's build something amazing together.
+              exceptional user experiences. Let&apos;s build something amazing
+              together.
             </motion.p>
           </motion.div>
 
@@ -123,7 +124,7 @@ export function Hero() {
             >
               Learn More About Me
             </motion.button>
-            
+
             <motion.a
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}

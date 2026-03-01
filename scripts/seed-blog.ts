@@ -4,7 +4,8 @@ import { estimateReadingTime, generateSlug } from '../lib/mdx-utils'
 const samplePosts = [
   {
     title: 'Building Modern Web Applications with Next.js 15',
-    description: 'A comprehensive guide to building scalable and performant web applications using Next.js 15 with the App Router, TypeScript, and modern development practices.',
+    description:
+      'A comprehensive guide to building scalable and performant web applications using Next.js 15 with the App Router, TypeScript, and modern development practices.',
     content: `# Building Modern Web Applications with Next.js 15
 
 The web development landscape continues to evolve rapidly, and staying current with modern frameworks and best practices is crucial for building exceptional user experiences. In this post, I'll walk you through the key concepts and features that make Next.js 15 an excellent choice for modern web applications.
@@ -239,12 +240,14 @@ The combination of Server Components, automatic optimizations, and excellent dev
     featured: true,
     published: true,
     published_at: '2024-12-15T10:00:00Z',
-    cover_image: 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=1200&h=600&fit=crop',
-    tags: ['Next.js', 'React', 'TypeScript', 'Web Development']
+    cover_image:
+      'https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=1200&h=600&fit=crop',
+    tags: ['Next.js', 'React', 'TypeScript', 'Web Development'],
   },
   {
     title: 'Mastering TypeScript: Advanced Patterns and Best Practices',
-    description: 'Dive deep into advanced TypeScript patterns, generics, conditional types, and best practices for building type-safe applications.',
+    description:
+      'Dive deep into advanced TypeScript patterns, generics, conditional types, and best practices for building type-safe applications.',
     content: `# Mastering TypeScript: Advanced Patterns and Best Practices
 
 TypeScript has revolutionized the way we write JavaScript, bringing static type checking and enhanced developer experience to our projects. In this comprehensive guide, we'll explore advanced TypeScript patterns that will help you write more robust and maintainable code.
@@ -541,11 +544,12 @@ Remember that TypeScript's type system is incredibly powerful, but it should enh
     featured: false,
     published: true,
     published_at: '2024-12-10T14:30:00Z',
-    tags: ['TypeScript', 'JavaScript', 'Programming', 'Best Practices']
+    tags: ['TypeScript', 'JavaScript', 'Programming', 'Best Practices'],
   },
   {
     title: 'The Art of Code Review: Building Better Software Together',
-    description: 'Learn how to conduct effective code reviews that improve code quality, share knowledge, and build stronger development teams.',
+    description:
+      'Learn how to conduct effective code reviews that improve code quality, share knowledge, and build stronger development teams.',
     content: `# The Art of Code Review: Building Better Software Together
 
 Code review is one of the most important practices in software development, yet it's often done poorly or skipped entirely. A well-executed code review process can dramatically improve code quality, catch bugs early, and foster team collaboration.
@@ -802,21 +806,26 @@ The time invested in thoughtful code reviews pays dividends in code quality, tea
     featured: false,
     published: true,
     published_at: '2024-12-05T09:15:00Z',
-    tags: ['Code Review', 'Software Engineering', 'Team Collaboration', 'Best Practices']
-  }
+    tags: [
+      'Code Review',
+      'Software Engineering',
+      'Team Collaboration',
+      'Best Practices',
+    ],
+  },
 ]
 
 // Function to seed the database
 export async function seedBlog() {
   console.log('🌱 Seeding blog database...')
-  
+
   try {
     for (const post of samplePosts) {
       const slug = generateSlug(post.title)
       const readingTime = estimateReadingTime(post.content)
-      
+
       console.log(`Creating post: ${post.title}`)
-      
+
       const postId = blogDb.createPost({
         slug,
         title: post.title,
@@ -828,26 +837,25 @@ export async function seedBlog() {
         reading_time: readingTime,
         cover_image: post.cover_image,
         author: 'Claude',
-        tags: post.tags
+        tags: post.tags,
       })
-      
+
       console.log(`✅ Created post with ID: ${postId}`)
     }
-    
+
     console.log('🎉 Blog database seeded successfully!')
-    
+
     // Print summary
-    const allPosts = blogDb.getAllPosts()
-    const publishedPosts = blogDb.getPublishedPosts()
-    const featuredPosts = blogDb.getFeaturedPosts()
-    const allTags = blogDb.getAllTags()
-    
+    const allPosts = await blogDb.getAllPosts()
+    const publishedPosts = await blogDb.getPublishedPosts()
+    const featuredPosts = await blogDb.getFeaturedPosts()
+    const allTags = await blogDb.getAllTags()
+
     console.log(`\n📊 Summary:`)
     console.log(`Total posts: ${allPosts.length}`)
     console.log(`Published posts: ${publishedPosts.length}`)
     console.log(`Featured posts: ${featuredPosts.length}`)
     console.log(`Total tags: ${allTags.length}`)
-    
   } catch (error) {
     console.error('❌ Error seeding blog database:', error)
     throw error

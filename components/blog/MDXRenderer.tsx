@@ -43,52 +43,66 @@ export function MDXRenderer({ content }: MDXRendererProps) {
 
   // Normalize language names for Prism
   const normalizeLanguage = (lang: string) => {
-          const languageMap: { [key: string]: string } = {
-            'js': 'javascript',
-            'ts': 'typescript',
-            'py': 'python',
-            'sh': 'bash',
-            'shell': 'bash',
-            'html': 'markup',
-            'xml': 'markup',
-            'md': 'markdown',
-            'yml': 'yaml',
-            'yaml': 'yaml'
-          }
+    const languageMap: { [key: string]: string } = {
+      js: 'javascript',
+      ts: 'typescript',
+      py: 'python',
+      sh: 'bash',
+      shell: 'bash',
+      html: 'markup',
+      xml: 'markup',
+      md: 'markdown',
+      yml: 'yaml',
+      yaml: 'yaml',
+    }
     return languageMap[lang?.toLowerCase()] || lang?.toLowerCase() || 'text'
   }
 
   const components = {
     // Headers with proper styling
     h1: ({ children }: any) => (
-      <h1 className="text-4xl md:text-5xl font-bold text-text mb-8 mt-12 leading-tight">{children}</h1>
+      <h1 className="text-4xl md:text-5xl font-bold text-text mb-8 mt-12 leading-tight">
+        {children}
+      </h1>
     ),
     h2: ({ children }: any) => (
-      <h2 className="text-3xl md:text-4xl font-bold text-text mb-6 mt-10 leading-tight">{children}</h2>
+      <h2 className="text-3xl md:text-4xl font-bold text-text mb-6 mt-10 leading-tight">
+        {children}
+      </h2>
     ),
     h3: ({ children }: any) => (
-      <h3 className="text-2xl md:text-3xl font-bold text-text mb-4 mt-8 leading-tight">{children}</h3>
+      <h3 className="text-2xl md:text-3xl font-bold text-text mb-4 mt-8 leading-tight">
+        {children}
+      </h3>
     ),
     h4: ({ children }: any) => (
-      <h4 className="text-xl md:text-2xl font-bold text-text mb-4 mt-6 leading-tight">{children}</h4>
+      <h4 className="text-xl md:text-2xl font-bold text-text mb-4 mt-6 leading-tight">
+        {children}
+      </h4>
     ),
     h5: ({ children }: any) => (
-      <h5 className="text-lg md:text-xl font-bold text-text mb-3 mt-6 leading-tight">{children}</h5>
+      <h5 className="text-lg md:text-xl font-bold text-text mb-3 mt-6 leading-tight">
+        {children}
+      </h5>
     ),
     h6: ({ children }: any) => (
-      <h6 className="text-base md:text-lg font-bold text-text mb-3 mt-4 leading-tight">{children}</h6>
+      <h6 className="text-base md:text-lg font-bold text-text mb-3 mt-4 leading-tight">
+        {children}
+      </h6>
     ),
 
     // Paragraphs with proper spacing
     p: ({ children }: any) => (
-      <p className="text-text-secondary leading-relaxed mb-6 text-base md:text-lg">{children}</p>
+      <p className="text-text-secondary leading-relaxed mb-6 text-base md:text-lg">
+        {children}
+      </p>
     ),
 
     // Enhanced links with external link handling
     a: ({ href, children }: any) => (
-      <a 
-        href={href} 
-        className="text-accent hover:text-accent/80 underline underline-offset-2 hover:underline-offset-4 transition-all" 
+      <a
+        href={href}
+        className="text-accent hover:text-accent/80 underline underline-offset-2 hover:underline-offset-4 transition-all"
         target={href?.startsWith('http') ? '_blank' : undefined}
         rel={href?.startsWith('http') ? 'noopener noreferrer' : undefined}
       >
@@ -100,7 +114,8 @@ export function MDXRenderer({ content }: MDXRendererProps) {
     pre: ({ children }: any) => {
       const codeElement = children?.props
       const code = codeElement?.children
-      const language = codeElement?.className?.replace('language-', '') || 'text'
+      const language =
+        codeElement?.className?.replace('language-', '') || 'text'
       const normalizedLang = normalizeLanguage(language)
 
       return (
@@ -128,7 +143,9 @@ export function MDXRenderer({ content }: MDXRendererProps) {
               </button>
             </div>
             <pre className={`language-${normalizedLang} p-4 overflow-x-auto`}>
-              <code className={`language-${normalizedLang} text-sm leading-relaxed`}>
+              <code
+                className={`language-${normalizedLang} text-sm leading-relaxed`}
+              >
                 {code}
               </code>
             </pre>
@@ -156,7 +173,9 @@ export function MDXRenderer({ content }: MDXRendererProps) {
       <ul className="list-disc list-outside my-6 ml-6 space-y-2">{children}</ul>
     ),
     ol: ({ children }: any) => (
-      <ol className="list-decimal list-outside my-6 ml-6 space-y-2">{children}</ol>
+      <ol className="list-decimal list-outside my-6 ml-6 space-y-2">
+        {children}
+      </ol>
     ),
     li: ({ children }: any) => (
       <li className="text-text-secondary leading-relaxed">{children}</li>
@@ -177,9 +196,7 @@ export function MDXRenderer({ content }: MDXRendererProps) {
     // Enhanced tables
     table: ({ children }: any) => (
       <div className="overflow-x-auto my-8 rounded-lg border border-border">
-        <table className="min-w-full border-collapse">
-          {children}
-        </table>
+        <table className="min-w-full border-collapse">{children}</table>
       </div>
     ),
     thead: ({ children }: any) => (
@@ -203,20 +220,20 @@ export function MDXRenderer({ content }: MDXRendererProps) {
     strong: ({ children }: any) => (
       <strong className="font-bold text-text">{children}</strong>
     ),
-    em: ({ children }: any) => (
-      <em className="italic text-text">{children}</em>
-    ),
+    em: ({ children }: any) => <em className="italic text-text">{children}</em>,
 
     // Enhanced images
     img: ({ src, alt }: any) => (
       <div className="my-8">
-        <img 
-          src={src} 
-          alt={alt} 
+        <img
+          src={src}
+          alt={alt}
           className="max-w-full h-auto rounded-lg border border-border shadow-lg mx-auto"
         />
         {alt && (
-          <p className="text-center text-sm text-text-secondary mt-2 italic">{alt}</p>
+          <p className="text-center text-sm text-text-secondary mt-2 italic">
+            {alt}
+          </p>
         )}
       </div>
     ),
@@ -233,16 +250,15 @@ export function MDXRenderer({ content }: MDXRendererProps) {
 
     // Strikethrough (from remark-gfm)
     del: ({ children }: any) => (
-      <del className="text-text-secondary line-through opacity-75">{children}</del>
-    )
+      <del className="text-text-secondary line-through opacity-75">
+        {children}
+      </del>
+    ),
   }
 
   return (
     <div className="mdx-content prose prose-lg max-w-none">
-      <ReactMarkdown
-        remarkPlugins={[remarkGfm]}
-        components={components}
-      >
+      <ReactMarkdown remarkPlugins={[remarkGfm]} components={components}>
         {content}
       </ReactMarkdown>
     </div>

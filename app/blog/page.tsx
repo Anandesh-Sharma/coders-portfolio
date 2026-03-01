@@ -5,10 +5,12 @@ import { siteConfig } from '@/lib/siteConfig'
 
 export const metadata: Metadata = {
   title: 'Blog',
-  description: 'Latest posts about web development, technology, and coding insights.',
+  description:
+    'Latest posts about web development, technology, and coding insights.',
   openGraph: {
     title: 'Blog - Claude Portfolio',
-    description: 'Latest posts about web development, technology, and coding insights.',
+    description:
+      'Latest posts about web development, technology, and coding insights.',
     url: `${siteConfig.url}/blog`,
   },
 }
@@ -23,7 +25,7 @@ export default async function BlogPage() {
 
   return (
     <div className="min-h-screen bg-bg">
-      <BlogListClient 
+      <BlogListClient
         posts={posts}
         featuredPosts={featuredPosts}
         tags={allTags}

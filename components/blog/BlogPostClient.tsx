@@ -1,8 +1,8 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import { motion } from 'framer-motion'
-import { ArrowLeft, Calendar, Clock, Tag, Share, Copy, Check } from 'lucide-react'
+import { ArrowLeft, Calendar, Clock, Tag, Share, Check } from 'lucide-react'
 import Link from 'next/link'
 import { BlogPost } from '@/lib/database'
 import { SimpleMDXRenderer } from './SimpleMDXRenderer'
@@ -19,13 +19,13 @@ export function BlogPostClient({ post, relatedPosts }: BlogPostClientProps) {
     return new Date(dateString).toLocaleDateString('en-US', {
       year: 'numeric',
       month: 'long',
-      day: 'numeric'
+      day: 'numeric',
     })
   }
 
   const handleShare = async () => {
     const url = window.location.href
-    
+
     if (navigator.share) {
       try {
         await navigator.share({
@@ -61,7 +61,7 @@ export function BlogPostClient({ post, relatedPosts }: BlogPostClientProps) {
         transition={{ duration: 0.6 }}
         className="mb-8"
       >
-        <Link 
+        <Link
           href="/blog"
           className="inline-flex items-center space-x-2 text-text-secondary hover:text-accent transition-colors"
         >
@@ -82,11 +82,11 @@ export function BlogPostClient({ post, relatedPosts }: BlogPostClientProps) {
             Featured Post
           </span>
         )}
-        
+
         <h1 className="text-3xl md:text-5xl font-bold text-text mb-6 leading-tight">
           {post.title}
         </h1>
-        
+
         {post.description && (
           <p className="text-xl text-text-secondary mb-8 leading-relaxed">
             {post.description}
@@ -100,18 +100,18 @@ export function BlogPostClient({ post, relatedPosts }: BlogPostClientProps) {
               {formatDate(post.published_at || post.created_at)}
             </time>
           </div>
-          
+
           {post.reading_time && (
             <div className="flex items-center space-x-2">
               <Clock className="h-4 w-4" />
               <span>{post.reading_time} min read</span>
             </div>
           )}
-          
+
           <div className="flex items-center space-x-2">
             <span>By {post.author}</span>
           </div>
-          
+
           <button
             onClick={handleShare}
             className="flex items-center space-x-2 text-text-secondary hover:text-accent transition-colors"
@@ -134,7 +134,7 @@ export function BlogPostClient({ post, relatedPosts }: BlogPostClientProps) {
           <div className="flex items-center space-x-3 mt-6">
             <Tag className="h-4 w-4 text-text-secondary" />
             <div className="flex flex-wrap gap-2">
-              {post.tags.map((tag) => (
+              {post.tags.map(tag => (
                 <Link
                   key={tag.id}
                   href={`/blog?tag=${tag.slug}`}
@@ -167,16 +167,17 @@ export function BlogPostClient({ post, relatedPosts }: BlogPostClientProps) {
       >
         <div className="flex items-center justify-between">
           <div className="text-text-secondary">
-            <p>Published on {formatDate(post.published_at || post.created_at)}</p>
+            <p>
+              Published on {formatDate(post.published_at || post.created_at)}
+            </p>
             {post.updated_at !== post.created_at && (
-              <p className="text-sm">Updated on {formatDate(post.updated_at)}</p>
+              <p className="text-sm">
+                Updated on {formatDate(post.updated_at)}
+              </p>
             )}
           </div>
-          
-          <button
-            onClick={handleShare}
-            className="btn-secondary"
-          >
+
+          <button onClick={handleShare} className="btn-secondary">
             Share Article
           </button>
         </div>
@@ -204,15 +205,21 @@ export function BlogPostClient({ post, relatedPosts }: BlogPostClientProps) {
                   <div className="card-hover h-full p-6">
                     <div className="flex items-center space-x-2 text-text-secondary text-sm mb-3">
                       <Calendar className="h-4 w-4" />
-                      <time dateTime={relatedPost.published_at || relatedPost.created_at}>
-                        {formatDate(relatedPost.published_at || relatedPost.created_at)}
+                      <time
+                        dateTime={
+                          relatedPost.published_at || relatedPost.created_at
+                        }
+                      >
+                        {formatDate(
+                          relatedPost.published_at || relatedPost.created_at
+                        )}
                       </time>
                     </div>
-                    
+
                     <h3 className="font-bold text-text mb-2 group-hover:text-accent transition-colors line-clamp-2">
                       {relatedPost.title}
                     </h3>
-                    
+
                     {relatedPost.description && (
                       <p className="text-sm text-text-secondary line-clamp-3">
                         {relatedPost.description}
@@ -234,9 +241,12 @@ export function BlogPostClient({ post, relatedPosts }: BlogPostClientProps) {
         className="mt-20"
       >
         <div className="card p-8 text-center bg-gradient-to-r from-bg-secondary/50 to-bg/50">
-          <h3 className="text-xl font-bold text-text mb-4">Enjoyed this post?</h3>
+          <h3 className="text-xl font-bold text-text mb-4">
+            Enjoyed this post?
+          </h3>
           <p className="text-text-secondary mb-6">
-            Subscribe to get notified when I publish new content about web development and technology.
+            Subscribe to get notified when I publish new content about web
+            development and technology.
           </p>
           <form className="max-w-md mx-auto flex gap-4">
             <input
@@ -245,10 +255,7 @@ export function BlogPostClient({ post, relatedPosts }: BlogPostClientProps) {
               className="flex-1 px-4 py-2 bg-bg border border-border rounded-lg text-text placeholder-text-secondary focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent"
               required
             />
-            <button
-              type="submit"
-              className="btn-primary"
-            >
+            <button type="submit" className="btn-primary">
               Subscribe
             </button>
           </form>

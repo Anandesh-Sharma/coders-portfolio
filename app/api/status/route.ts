@@ -6,7 +6,7 @@ import { validateAuth, createSuccessResponse } from '@/lib/auth'
 export async function GET(request: NextRequest) {
   try {
     const isAuthenticated = validateAuth(request)
-    
+
     // Basic statistics
     const stats = {
       timestamp: new Date().toISOString(),
@@ -17,7 +17,7 @@ export async function GET(request: NextRequest) {
         publishedPosts: 0,
         featuredPosts: 0,
         totalTags: 0,
-      }
+      },
     }
 
     // Get blog statistics
@@ -41,11 +41,14 @@ export async function GET(request: NextRequest) {
     return createSuccessResponse(stats)
   } catch (error) {
     console.error('Error in status endpoint:', error)
-    return createSuccessResponse({
-      timestamp: new Date().toISOString(),
-      authenticated: false,
-      database: 'error',
-      error: 'Failed to get status'
-    }, 500)
+    return createSuccessResponse(
+      {
+        timestamp: new Date().toISOString(),
+        authenticated: false,
+        database: 'error',
+        error: 'Failed to get status',
+      },
+      500
+    )
   }
 }

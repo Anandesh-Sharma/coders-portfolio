@@ -10,10 +10,12 @@ interface BlogPostPageProps {
   }>
 }
 
-export async function generateMetadata({ params }: BlogPostPageProps): Promise<Metadata> {
+export async function generateMetadata({
+  params,
+}: BlogPostPageProps): Promise<Metadata> {
   const { slug } = await params
   const post = await blogDb.getPostBySlug(slug)
-  
+
   if (!post) {
     return {
       title: 'Post Not Found',
@@ -49,7 +51,7 @@ export const dynamic = 'force-dynamic'
 export default async function BlogPostPage({ params }: BlogPostPageProps) {
   const { slug } = await params
   const post = await blogDb.getPostBySlug(slug)
-  
+
   if (!post) {
     notFound()
   }
@@ -57,17 +59,16 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
   // Get related posts (same tags, excluding current post)
   const allPosts = await blogDb.getPublishedPosts()
   const relatedPosts = allPosts
-    .filter(p => p.id !== post.id && p.tags?.some(tag => 
-      post.tags?.some(postTag => postTag.id === tag.id)
-    ))
+    .filter(
+      p =>
+        p.id !== post.id &&
+        p.tags?.some(tag => post.tags?.some(postTag => postTag.id === tag.id))
+    )
     .slice(0, 3)
 
   return (
     <div className="min-h-screen bg-bg">
-      <BlogPostClient 
-        post={post}
-        relatedPosts={relatedPosts}
-      />
+      <BlogPostClient post={post} relatedPosts={relatedPosts} />
     </div>
   )
 }

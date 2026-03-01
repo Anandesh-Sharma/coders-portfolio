@@ -1,15 +1,15 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { 
-  Code, 
-  Database, 
-  Wrench, 
+import {
+  Code,
+  Database,
+  Wrench,
   Palette,
   Globe,
   Server,
   Smartphone,
-  Zap
+  Zap,
 } from 'lucide-react'
 import { siteConfig } from '@/lib/siteConfig'
 
@@ -19,9 +19,9 @@ const skillIcons = {
   'Tools & Technologies': Wrench,
   'Design & UX': Palette,
   'Web Technologies': Globe,
-  'Database': Database,
+  Database: Database,
   'Mobile Development': Smartphone,
-  'Performance': Zap,
+  Performance: Zap,
 }
 
 export function Skills() {
@@ -52,65 +52,70 @@ export function Skills() {
               viewport={{ once: true }}
               className="body-large max-w-2xl mx-auto"
             >
-              A comprehensive overview of my technical expertise and the tools I use to bring ideas to life.
+              A comprehensive overview of my technical expertise and the tools I
+              use to bring ideas to life.
             </motion.p>
           </div>
 
           {/* Skills Grid */}
           <div className="grid md:grid-cols-2 lg:grid-cols-2 gap-8">
-            {Object.entries(siteConfig.skills).map(([category, skills], index) => {
-              const IconComponent = skillIcons[category as keyof typeof skillIcons] || Code
+            {Object.entries(siteConfig.skills).map(
+              ([category, skills], index) => {
+                const IconComponent =
+                  skillIcons[category as keyof typeof skillIcons] || Code
 
-              return (
-                <motion.div
-                  key={category}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.8, delay: index * 0.1 }}
-                  viewport={{ once: true }}
-                  className="group"
-                >
-                  <div className="card-hover h-full p-8">
-                    {/* Category Header */}
-                    <div className="flex items-center space-x-4 mb-6">
-                      <div className="p-3 bg-accent/10 rounded-lg group-hover:bg-accent/20 transition-colors">
-                        <IconComponent className="h-6 w-6 text-accent" />
+                return (
+                  <motion.div
+                    key={category}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.8, delay: index * 0.1 }}
+                    viewport={{ once: true }}
+                    className="group"
+                  >
+                    <div className="card-hover h-full p-8">
+                      {/* Category Header */}
+                      <div className="flex items-center space-x-4 mb-6">
+                        <div className="p-3 bg-accent/10 rounded-lg group-hover:bg-accent/20 transition-colors">
+                          <IconComponent className="h-6 w-6 text-accent" />
+                        </div>
+                        <h3 className="heading-4 text-text">{category}</h3>
                       </div>
-                      <h3 className="heading-4 text-text">{category}</h3>
-                    </div>
 
-                    {/* Skills List */}
-                    <div className="space-y-3">
-                      {skills.map((skill, skillIndex) => (
-                        <motion.div
-                          key={skill}
-                          initial={{ opacity: 0, x: -20 }}
-                          whileInView={{ opacity: 1, x: 0 }}
-                          transition={{ 
-                            duration: 0.5, 
-                            delay: (index * 0.1) + (skillIndex * 0.05) 
-                          }}
-                          viewport={{ once: true }}
-                          className="flex items-center space-x-3 group/skill"
-                        >
-                          <div className="w-2 h-2 bg-accent rounded-full group-hover/skill:scale-125 transition-transform" />
-                          <span className="body-base group-hover/skill:text-text transition-colors">
-                            {skill}
-                          </span>
-                        </motion.div>
-                      ))}
-                    </div>
+                      {/* Skills List */}
+                      <div className="space-y-3">
+                        {skills.map((skill, skillIndex) => (
+                          <motion.div
+                            key={skill}
+                            initial={{ opacity: 0, x: -20 }}
+                            whileInView={{ opacity: 1, x: 0 }}
+                            transition={{
+                              duration: 0.5,
+                              delay: index * 0.1 + skillIndex * 0.05,
+                            }}
+                            viewport={{ once: true }}
+                            className="flex items-center space-x-3 group/skill"
+                          >
+                            <div className="w-2 h-2 bg-accent rounded-full group-hover/skill:scale-125 transition-transform" />
+                            <span className="body-base group-hover/skill:text-text transition-colors">
+                              {skill}
+                            </span>
+                          </motion.div>
+                        ))}
+                      </div>
 
-                    {/* Skill Count */}
-                    <div className="mt-6 pt-6 border-t border-border">
-                      <span className="text-sm text-text-secondary">
-                        {skills.length} {skills.length === 1 ? 'skill' : 'skills'}
-                      </span>
+                      {/* Skill Count */}
+                      <div className="mt-6 pt-6 border-t border-border">
+                        <span className="text-sm text-text-secondary">
+                          {skills.length}{' '}
+                          {skills.length === 1 ? 'skill' : 'skills'}
+                        </span>
+                      </div>
                     </div>
-                  </div>
-                </motion.div>
-              )
-            })}
+                  </motion.div>
+                )
+              }
+            )}
           </div>
 
           {/* Additional Skills Info */}
@@ -124,9 +129,10 @@ export function Skills() {
             <div className="card p-8 text-center">
               <h3 className="heading-3 text-text mb-4">Always Learning</h3>
               <p className="body-large mb-8 max-w-3xl mx-auto">
-                Technology evolves rapidly, and I'm committed to staying current with the latest 
-                tools, frameworks, and best practices. I'm always exploring new technologies and 
-                methodologies to enhance my development capabilities.
+                Technology evolves rapidly, and I&apos;m committed to staying
+                current with the latest tools, frameworks, and best practices.
+                I&apos;m always exploring new technologies and methodologies to
+                enhance my development capabilities.
               </p>
 
               <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -154,7 +160,9 @@ export function Skills() {
                   <div className="flex items-center justify-center w-12 h-12 bg-accent/10 rounded-lg mx-auto mb-3">
                     <Globe className="h-6 w-6 text-accent" />
                   </div>
-                  <h4 className="font-semibold text-text mb-2">Accessibility</h4>
+                  <h4 className="font-semibold text-text mb-2">
+                    Accessibility
+                  </h4>
                   <p className="body-small">
                     Building inclusive web experiences for all users
                   </p>
