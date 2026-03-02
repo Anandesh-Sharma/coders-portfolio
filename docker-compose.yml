@@ -1,0 +1,23 @@
+services:
+  portfolio:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    expose:
+      - 3000
+    environment:
+      - NODE_ENV=production
+      - ADMIN_USERNAME=anandesh
+      - ADMIN_PASSWORD=Rock4494@
+      - DATABASE_URL=postgresql://neondb_owner:npg_lED1LXWIe8tC@ep-curly-grass-a2eiu5j2-pooler.eu-central-1.aws.neon.tech/neondb?channel_binding=require&sslmode=require
+      - GOOGLE_SITE_VERIFICATION=5Q1OjmzwNNgCnIfFlYGzTxXhzj_lsWNUpnnjjGZPbHM
+    volumes:
+      # Mount content directory for easy content updates
+      - ./content:/app/content:ro
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD-SHELL", "curl -f http://localhost:3000/api/status || exit 1"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s

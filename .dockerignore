@@ -1,0 +1,14 @@
+node_modules
+.next
+.git
+.gitignore
+*.md
+!README.md
+dist
+blog.db
+tests
+jest.config.js
+jest.setup.js
+playwright.config.ts
+lighthouserc.json
+.env*
