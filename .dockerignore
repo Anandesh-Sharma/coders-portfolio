@@ -1,0 +1,12 @@
+node_modules
+.next
+.git
+*.md
+tests
+playwright.config.ts
+jest.config.js
+jest.setup.js
+lighthouserc.json
+dist
+blog.db
+.env*
