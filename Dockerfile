@@ -32,6 +32,9 @@ COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
 # Copy content directory for MDX/blog content
 COPY --from=builder --chown=nextjs:nodejs /app/content ./content
 
+# Copy SQLite database
+COPY --from=builder --chown=nextjs:nodejs /app/blog.db ./blog.db
+
 USER nextjs
 
 EXPOSE 3000
